@@ -1,0 +1,19 @@
+class Solution {
+    public List<List<Integer>> allPathsSourceTarget(int[][] graph) {
+        if(graph==null || graph.length==0)
+            return new ArrayList();
+        List<List<Integer>> list=new ArrayList();
+        List<Integer> path=new ArrayList();
+        getp(graph,list,path,0);
+        return list;
+    }
+    private void getp(int[][] graph,List<List<Integer>> list,List<Integer> path,int source){
+        path.add(source);
+        if(source==graph.length-1)
+            list.add(new ArrayList(path));
+        for(int i:graph[source]){
+            getp(graph,list,path,i);
+        }
+        path.remove(path.size()-1);
+    }
+}
